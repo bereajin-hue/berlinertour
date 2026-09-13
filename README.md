@@ -1,0 +1,78 @@
+# 베를리너투어 홈페이지
+
+독일·체코 종교개혁 성지순례 상품을 소개하는 원페이지 정적 홈페이지입니다. GitHub → Cloudflare Pages 연동으로, `main`(또는 배포 브랜치)에 push하면 자동 배포됩니다. 별도 빌드 과정 없이 순수 HTML/CSS/JS로 구성되어 있습니다.
+
+## 폴더 구조
+
+```
+/
+├── index.html                     현재 오픈 상품(독일·체코 성지순례)이 곧 메인 페이지
+├── products/
+│   └── germany-czech/index.html   index.html과 동일 내용 (상품별 고유 URL)
+├── terms.html                     이용약관 (초안 — 게시 전 법률 검토 필요)
+├── privacy.html                   개인정보처리방침 (초안 — 게시 전 법률 검토 필요)
+├── products.json                  GNB "상품" 드롭다운에 표시되는 상품 목록 데이터
+├── assets/
+│   ├── css/style.css
+│   └── js/main.js
+└── images/
+    ├── hero/           1.jpg, 2.jpg
+    ├── destinations/   prague/, herrnhut/, dresden/, berlin/, potsdam/, wittenberg/, leipzig/
+    ├── reviews/        1.jpg ~ 8.jpg
+    ├── guide/          1.jpg
+    └── og-image.jpg
+```
+
+## 사진 교체 방법 (운영자용)
+
+코드를 건드릴 필요 없이 **`images/` 폴더 안의 파일을 같은 이름으로 덮어쓰고 git push**하면 됩니다.
+
+1. 새 사진을 준비합니다 (권장: 가로형 JPG, 방문지/후기 사진은 4:3 비율, 히어로 사진은 16:9 비율, 가이드 사진은 1:1 비율).
+2. 아래처럼 **기존 파일과 정확히 같은 경로·파일명**으로 저장합니다.
+   - 예) 프라하 사진 교체 → `images/destinations/prague/1.jpg` 파일을 새 사진으로 덮어쓰기
+   - 예) 후기 카드 3번째 사진 교체 → `images/reviews/3.jpg` 덮어쓰기
+3. `git add images/... && git commit -m "사진 업데이트" && git push` 하면 Cloudflare Pages가 자동으로 재배포합니다.
+
+> 현재 `images/` 폴더에는 실제 사진이 아직 없어 자리표시용(placeholder) 이미지가 들어가 있습니다. 위 방법대로 실제 사진으로 교체해 주세요.
+
+## 후기(리뷰) 텍스트/문구 수정
+
+`index.html`과 `products/germany-czech/index.html`의 `id="reviews"` 섹션에서 각 `<article class="review-card">` 블록의 문구·별점·태그를 직접 수정합니다. 두 파일이 동일한 내용이므로 **양쪽 파일 모두 수정**해야 합니다.
+
+## 새 상품 추가 방법
+
+1. `products/새상품슬러그/` 폴더를 만들고 그 안에 `index.html`을 작성합니다 (기존 `products/germany-czech/index.html`을 복사해서 내용만 수정하는 방식을 권장합니다).
+2. `products.json`에 새 상품 항목을 한 줄 추가합니다.
+
+```json
+[
+  { "slug": "germany-czech", "name": "독일·체코 성지순례", "url": "/products/germany-czech/", "status": "판매중" },
+  { "slug": "새상품슬러그", "name": "새 상품명", "url": "/products/새상품슬러그/", "status": "오픈예정" }
+]
+```
+
+`products.json`을 수정하면 모든 페이지 상단 GNB "상품" 드롭다운에 자동으로 반영됩니다 (코드 수정 불필요). 단, `fetch`가 실패하는 환경(예: 로컬에서 `file://`로 직접 열었을 때)에서는 각 HTML의 `<ul class="nav-dropdown" data-products-dropdown>` 안에 있는 정적 항목이 대신 표시되므로, 신규 상품 추가 시 이 정적 목록도 함께 갱신해 두는 것을 권장합니다.
+
+## 로컬 미리보기
+
+빌드 과정이 없으므로 정적 서버로 폴더를 열면 됩니다.
+
+```bash
+python3 -m http.server 8000
+# http://localhost:8000 접속
+```
+
+(주의: `fetch('/products.json')`은 `file://`로 직접 여는 경우 동작하지 않으므로, 반드시 로컬 서버를 통해 확인하세요.)
+
+## Cloudflare Pages 배포 설정
+
+- Build command: 없음 (Framework preset: None)
+- Build output directory: `/` (저장소 루트)
+- 이 저장소를 Cloudflare Pages 프로젝트에 연결하고 배포 브랜치를 지정하면, 이후 해당 브랜치에 push할 때마다 자동으로 재배포됩니다.
+
+## 남은 작업 (게시 전 확인사항)
+
+- [ ] `images/` 폴더의 자리표시용 사진을 실제 사진으로 교체
+- [ ] `terms.html`, `privacy.html` 내용 법률 검토 (관광진흥법 표준약관 준수 여부 포함)
+- [ ] 여행 후기 원본 사진 확보 후 `images/reviews/` 교체, 리뷰 플랫폼 UI가 포함된 캡처본은 크롭 후 사용 권장
+- [ ] 상품가·연락처 등 최신 정보로 재확인
