@@ -145,4 +145,44 @@
     prevBtn.addEventListener("click", function () { scrollByCard(-1); });
     nextBtn.addEventListener("click", function () { scrollByCard(1); });
   }
+
+  /* ---------------------------------------------------------------
+   * 8. 후기 사진 라이트박스 (클릭 시 원본 크게 보기)
+   * ------------------------------------------------------------- */
+  var reviewImages = document.querySelectorAll(".review-media img");
+  if (reviewImages.length) {
+    var overlay = document.createElement("div");
+    overlay.className = "lightbox-overlay";
+    overlay.innerHTML =
+      '<button class="lightbox-close" aria-label="닫기">✕</button><img alt="">';
+    document.body.appendChild(overlay);
+
+    var overlayImg = overlay.querySelector("img");
+    var closeBtn = overlay.querySelector(".lightbox-close");
+
+    var openLightbox = function (src, alt) {
+      overlayImg.src = src;
+      overlayImg.alt = alt || "";
+      overlay.classList.add("is-open");
+      document.body.style.overflow = "hidden";
+    };
+    var closeLightbox = function () {
+      overlay.classList.remove("is-open");
+      document.body.style.overflow = "";
+    };
+
+    reviewImages.forEach(function (img) {
+      img.addEventListener("click", function () {
+        openLightbox(img.currentSrc || img.src, img.alt);
+      });
+    });
+
+    closeBtn.addEventListener("click", closeLightbox);
+    overlay.addEventListener("click", function (e) {
+      if (e.target === overlay) closeLightbox();
+    });
+    document.addEventListener("keydown", function (e) {
+      if (e.key === "Escape") closeLightbox();
+    });
+  }
 })();

@@ -20,6 +20,7 @@
     ├── destinations/   prague/, herrnhut/, dresden/, berlin/, potsdam/, wittenberg/, leipzig/
     ├── reviews/        1.jpg ~ 8.jpg
     ├── guide/          1.jpg
+    ├── buttons/        kakao.png (카카오톡 공식 상담 버튼 이미지)
     └── og-image.jpg
 ```
 
@@ -34,6 +35,18 @@
 3. `git add images/... && git commit -m "사진 업데이트" && git push` 하면 Cloudflare Pages가 자동으로 재배포합니다.
 
 > 현재 `images/` 폴더에는 실제 사진이 아직 없어 자리표시용(placeholder) 이미지가 들어가 있습니다. 위 방법대로 실제 사진으로 교체해 주세요.
+
+## 카카오톡 상담 버튼 이미지 교체
+
+카카오는 채널/상담 버튼에 대해 색상·비율·여백 등 엄격한 디자인 가이드를 두고 있어, 코드로 임의 제작하지 않고 **카카오에서 제공하는 공식 버튼 이미지 파일을 그대로 사용**하는 구조로 되어 있습니다.
+
+1. 카카오 비즈니스 채널 관리자센터 등에서 제공하는 공식 버튼 이미지 파일을 준비합니다.
+2. `images/buttons/kakao.png` 파일을 그 이미지로 **동일한 파일명으로 덮어쓰기**합니다.
+3. `git add images/buttons/kakao.png && git commit -m "카카오 버튼 이미지 교체" && git push`
+
+버튼은 히어로, 문의하기 섹션, 모바일 하단 고정바 총 3곳에서 같은 파일 하나를 공유하므로 **한 번만 교체하면 전체 반영**됩니다. 이미지의 실제 가로세로 비율에 따라 버튼이 자동으로 맞춰지며, 필요시 `assets/css/style.css`의 `.kakao-btn-img` (및 `.contact-cta-row .kakao-btn-img`, `.kakao-btn-link--fab .kakao-btn-img`) 의 `height` 값으로 크기를 조정할 수 있습니다.
+
+> 현재는 실제 파일이 없어 노란색 자리표시용 이미지가 들어가 있습니다.
 
 ## 후기(리뷰) 텍스트/문구 수정
 
@@ -73,6 +86,7 @@ python3 -m http.server 8000
 ## 남은 작업 (게시 전 확인사항)
 
 - [ ] `images/` 폴더의 자리표시용 사진을 실제 사진으로 교체
+- [ ] `images/buttons/kakao.png`를 카카오 공식 상담 버튼 이미지로 교체
 - [ ] `terms.html`, `privacy.html` 내용 법률 검토 (관광진흥법 표준약관 준수 여부 포함)
 - [ ] 여행 후기 원본 사진 확보 후 `images/reviews/` 교체, 리뷰 플랫폼 UI가 포함된 캡처본은 크롭 후 사용 권장
-- [ ] 상품가·연락처 등 최신 정보로 재확인
+- [ ] 상품가 최신 정보로 재확인 (현재 "문의(카카오톡)"로 안내 중, 전화번호는 노출하지 않음)
