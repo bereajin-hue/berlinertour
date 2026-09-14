@@ -584,11 +584,7 @@ button { font-family: inherit; cursor: pointer; }
 .include-card li {
   font-size: 14.5px;
   color: var(--color-ink);
-  display: flex;
-  gap: 8px;
-  align-items: flex-start;
 }
-.include-card li::before { content: "—"; color: var(--color-ink-soft); flex-shrink: 0; }
 
 /* ---------- Reviews ---------- */
 .review-slider-wrap { position: relative; }
@@ -738,10 +734,7 @@ button { font-family: inherit; cursor: pointer; }
   font-size: 14px;
   color: var(--color-ink-soft);
   line-height: 1.6;
-  padding-left: 14px;
-  position: relative;
 }
-.guide-more-group li::before { content: "—"; position: absolute; left: 0; color: var(--color-line); }
 
 /* ---------- Contact CTA ---------- */
 .contact-section {
