@@ -697,6 +697,52 @@ button { font-family: inherit; cursor: pointer; }
 .guide-stat strong { display: block; font-size: 20px; color: var(--color-black); }
 .guide-stat span { font-size: 12.5px; color: var(--color-ink-soft); }
 
+.guide-more { margin-top: 22px; }
+.guide-more-toggle {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  background: none;
+  border: none;
+  padding: 0 0 3px;
+  font-weight: 700;
+  font-size: 14px;
+  color: var(--color-black);
+  border-bottom: 2px solid var(--color-black);
+}
+.guide-more-chevron { font-size: 11px; transition: transform 0.2s ease; }
+.guide-more.is-open .guide-more-chevron { transform: rotate(180deg); }
+
+.guide-more-detail {
+  max-height: 0;
+  overflow: hidden;
+  transition: max-height 0.3s ease;
+}
+.guide-more-detail-inner {
+  padding-top: 22px;
+  display: flex;
+  flex-direction: column;
+  gap: 18px;
+  text-align: left;
+}
+.guide-more-group h4 {
+  font-size: 12.5px;
+  font-weight: 800;
+  color: var(--color-accent);
+  margin: 0 0 8px;
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+}
+.guide-more-group ul { display: flex; flex-direction: column; gap: 5px; }
+.guide-more-group li {
+  font-size: 14px;
+  color: var(--color-ink-soft);
+  line-height: 1.6;
+  padding-left: 14px;
+  position: relative;
+}
+.guide-more-group li::before { content: "—"; position: absolute; left: 0; color: var(--color-line); }
+
 /* ---------- Contact CTA ---------- */
 .contact-section {
   background: linear-gradient(135deg, var(--color-black) 0%, var(--color-black-deep) 100%);

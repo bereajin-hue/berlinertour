@@ -102,6 +102,28 @@
   });
 
   /* ---------------------------------------------------------------
+   * 5-1. 가이드 소개 "이력 더보기" 아코디언
+   * ------------------------------------------------------------- */
+  document.querySelectorAll(".guide-more").forEach(function (wrap) {
+    var toggle = wrap.querySelector(".guide-more-toggle");
+    var detail = wrap.querySelector(".guide-more-detail");
+    if (!toggle || !detail) return;
+
+    toggle.addEventListener("click", function () {
+      var isOpen = wrap.classList.contains("is-open");
+      if (isOpen) {
+        wrap.classList.remove("is-open");
+        detail.style.maxHeight = null;
+        toggle.setAttribute("aria-expanded", "false");
+      } else {
+        wrap.classList.add("is-open");
+        detail.style.maxHeight = detail.scrollHeight + "px";
+        toggle.setAttribute("aria-expanded", "true");
+      }
+    });
+  });
+
+  /* ---------------------------------------------------------------
    * 6. 방문지 카드 썸네일 전환
    * ------------------------------------------------------------- */
   document.querySelectorAll(".dest-card").forEach(function (card) {
