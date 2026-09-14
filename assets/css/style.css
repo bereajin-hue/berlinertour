@@ -723,6 +723,18 @@ button { font-family: inherit; cursor: pointer; }
 .footer-links a { font-weight: 700; color: rgba(255, 255, 255, 0.9); }
 .footer-links a:hover { color: #fff; }
 .footer-info p { margin: 0 0 4px; }
+.footer-legal {
+  margin-top: 16px;
+  padding-top: 16px;
+  border-top: 1px solid rgba(255, 255, 255, 0.12);
+}
+.footer-legal p {
+  margin: 0 0 6px;
+  font-size: 12px;
+  color: rgba(255, 255, 255, 0.45);
+  line-height: 1.7;
+}
+.footer-legal em { font-style: normal; color: rgba(255, 255, 255, 0.6); }
 .footer-copy {
   margin-top: 20px;
   padding-top: 20px;
