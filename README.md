@@ -90,7 +90,7 @@ python3 -m http.server 8000
 `robots.txt`, `sitemap.xml`이 이미 사이트 루트에 있으니, 아래 순서로 등록하면 됩니다.
 
 1. **구글 서치콘솔** (https://search.google.com/search-console)
-   - 속성 추가 → "URL 접두어" 방식으로 `https://berlinertour.pages.dev/` 입력 (또는 실제 커스텀 도메인)
+   - 속성 추가 → "URL 접두어" 방식으로 `https://berliner.agentt.kr/` 입력
    - 소유권 확인 (HTML 태그 방식이 가장 간단 — 발급받은 메타태그를 `index.html`, `products/germany-czech/index.html`의 `<head>`에 추가해달라고 요청하면 제가 넣어드립니다)
    - 확인 후 왼쪽 메뉴 "Sitemaps" → `sitemap.xml` 입력 후 제출
 2. **네이버 서치어드바이저** (https://searchadvisor.naver.com)
@@ -98,7 +98,7 @@ python3 -m http.server 8000
    - 소유확인 (HTML 파일 업로드 또는 메타태그 방식 — 발급받은 값을 알려주시면 적용해드립니다)
    - "요청 → 사이트맵 제출"에서 `sitemap.xml` 제출
 
-> **커스텀 도메인을 나중에 연결하시면**, `robots.txt`의 Sitemap 주소, `sitemap.xml`의 각 `<loc>`, 그리고 모든 페이지의 `<link rel="canonical">`을 새 도메인으로 함께 바꿔야 합니다 — 이때도 말씀해주시면 한 번에 바꿔드립니다.
+> 도메인을 바꾸거나 추가로 연결하실 경우, `robots.txt`의 Sitemap 주소, `sitemap.xml`의 각 `<loc>`, 그리고 모든 페이지의 `<link rel="canonical">`을 새 도메인으로 함께 바꿔야 합니다 — 말씀해주시면 한 번에 바꿔드립니다.
 
 ## 남은 작업 (게시 전 확인사항)
 
