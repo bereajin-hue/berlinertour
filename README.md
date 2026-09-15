@@ -12,6 +12,8 @@
 ├── terms.html                     이용약관 (초안 — 게시 전 법률 검토 필요)
 ├── privacy.html                   개인정보처리방침 (초안 — 게시 전 법률 검토 필요)
 ├── products.json                  GNB "상품" 드롭다운에 표시되는 상품 목록 데이터
+├── robots.txt                     검색엔진 크롤링 허용 범위 + sitemap 위치 안내
+├── sitemap.xml                    검색엔진에 제출할 페이지 목록
 ├── assets/
 │   ├── css/style.css
 │   └── js/main.js
@@ -82,6 +84,21 @@ python3 -m http.server 8000
 - Build command: 없음 (Framework preset: None)
 - Build output directory: `/` (저장소 루트)
 - 이 저장소를 Cloudflare Pages 프로젝트에 연결하고 배포 브랜치를 지정하면, 이후 해당 브랜치에 push할 때마다 자동으로 재배포됩니다.
+
+## 검색엔진 색인 등록 (네이버 서치어드바이저 / 구글 서치콘솔)
+
+`robots.txt`, `sitemap.xml`이 이미 사이트 루트에 있으니, 아래 순서로 등록하면 됩니다.
+
+1. **구글 서치콘솔** (https://search.google.com/search-console)
+   - 속성 추가 → "URL 접두어" 방식으로 `https://berlinertour.pages.dev/` 입력 (또는 실제 커스텀 도메인)
+   - 소유권 확인 (HTML 태그 방식이 가장 간단 — 발급받은 메타태그를 `index.html`, `products/germany-czech/index.html`의 `<head>`에 추가해달라고 요청하면 제가 넣어드립니다)
+   - 확인 후 왼쪽 메뉴 "Sitemaps" → `sitemap.xml` 입력 후 제출
+2. **네이버 서치어드바이저** (https://searchadvisor.naver.com)
+   - 사이트 등록 → 위와 동일한 주소 입력
+   - 소유확인 (HTML 파일 업로드 또는 메타태그 방식 — 발급받은 값을 알려주시면 적용해드립니다)
+   - "요청 → 사이트맵 제출"에서 `sitemap.xml` 제출
+
+> **커스텀 도메인을 나중에 연결하시면**, `robots.txt`의 Sitemap 주소, `sitemap.xml`의 각 `<loc>`, 그리고 모든 페이지의 `<link rel="canonical">`을 새 도메인으로 함께 바꿔야 합니다 — 이때도 말씀해주시면 한 번에 바꿔드립니다.
 
 ## 남은 작업 (게시 전 확인사항)
 
